@@ -49,10 +49,7 @@ export class AuthService {
 
   logOut() {
     console.log('loggin user out');
-    this.http
-      .post(`${environment.API_URL}/logout`, {})
-      .pipe(take(1))
-      .subscribe(() => this.logUserOut());
+    return this.http.post(`${environment.API_URL}/logout`, {}).pipe(take(1));
   }
 
   /**
@@ -68,7 +65,6 @@ export class AuthService {
    */
   logUserOut() {
     this.user$.next(null);
-    this.router.navigate(['/login']);
   }
 
   storeUser() {
